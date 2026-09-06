@@ -1,0 +1,199 @@
+/*
+ * Tokens and base styles lifted from design/Portfolio.dc.html. The design is
+ * dark-only and commits to a single look, so there is no light palette here.
+ */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #000;
+  --surface: #1d1d1f;
+  --surface-hover: #232325;
+
+  --text: #f5f5f7;
+  --text-2: #d2d2d7;
+  --text-3: #a1a1a6;
+  --text-4: #86868b;
+  --text-5: #6e6e73;
+
+  --blue: #2997ff;
+  --blue-hover: #6fbaff;
+  --btn: #0071e3;
+  --btn-hover: #0077ed;
+
+  --border: rgba(255, 255, 255, 0.11);
+  --chip: rgba(255, 255, 255, 0.09);
+  --hairline-strong: rgba(255, 255, 255, 0.28);
+
+  --pill: 980px;
+  --container: 1020px;
+  --gutter: 22px;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", Helvetica, sans-serif;
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes growX {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- shared primitives ---- */
+
+.shell {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.page {
+  animation: fadeUp 0.5s var(--ease);
+}
+
+/* Pill buttons — the design uses these as both <button> and <a>. */
+.pill {
+  display: inline-block;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 12px 24px;
+  border-radius: var(--pill);
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.pillPrimary {
+  background: var(--btn);
+  color: #fff;
+}
+
+.pillPrimary:hover {
+  background: var(--btn-hover);
+  color: #fff;
+  text-decoration: none;
+}
+
+.pillGhost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--hairline-strong);
+}
+
+.pillGhost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Small tech chips on project cards and in the modal. */
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 5px 11px;
+  border-radius: var(--pill);
+  background: var(--chip);
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+/* Placeholder art blocks standing in for project imagery. */
+.shot {
+  background: linear-gradient(150deg, #2b2b2e, #191919);
+  display: grid;
+  place-items: center;
+}
+
+.shotLabel {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-5);
+}
+
+.sectionHeading {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+}
+
+.pageIntro {
+  font-size: clamp(17px, 1.8vw, 21px);
+  line-height: 1.45;
+  color: var(--text-3);
+  text-wrap: pretty;
+}

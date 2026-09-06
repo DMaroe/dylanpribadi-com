@@ -1,0 +1,134 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(12px, 4vh, 48px) 16px;
+  overflow-y: auto;
+  animation: fadeUp 0.28s var(--ease);
+}
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  background: var(--surface);
+  border-radius: 26px;
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--pill);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+
+.close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero {
+  height: clamp(180px, 30vh, 280px);
+  background: linear-gradient(150deg, #2f2f33, #171719);
+}
+
+.body {
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.meta {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+}
+
+.lede {
+  margin: 14px 0 0;
+  max-width: 66ch;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+
+.detail {
+  margin: 14px 0 0;
+  max-width: 66ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-3);
+  text-wrap: pretty;
+}
+
+.tags {
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.modalTag {
+  padding: 6px 12px;
+}
+
+.screens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.screen {
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  gap: 6px;
+}
+
+.screenLabel {
+  font-size: 11px;
+  color: var(--text-5);
+}
+
+.play {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--pill);
+  background: rgba(255, 255, 255, 0.14);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}

@@ -1,0 +1,132 @@
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(56px, 10vh, 110px) var(--gutter) clamp(64px, 10vh, 110px);
+}
+
+.availability {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(36px, 6.4vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+}
+
+.intro {
+  max-width: 52ch;
+  margin: 18px 0 40px;
+  font-size: clamp(17px, 1.9vw, 21px);
+  line-height: 1.45;
+  color: var(--text-3);
+  text-wrap: pretty;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: block;
+  border-radius: 22px;
+  padding: 28px 26px 26px;
+  transition:
+    transform 0.35s var(--ease),
+    background 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  text-decoration: none;
+}
+
+.cardEmail {
+  background: var(--btn);
+  color: #fff;
+}
+
+.cardEmail:hover {
+  background: var(--btn-hover);
+  color: #fff;
+}
+
+.cardWhatsapp {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.cardWhatsapp:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.cardLabelEmail {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #dbeeff;
+}
+
+.cardLabelWhatsapp {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--blue);
+}
+
+.cardAction {
+  display: block;
+  margin-top: 10px;
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cardValueEmail {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #eaf5ff;
+}
+
+.cardValueWhatsapp {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--text-3);
+}
+
+.elsewhere {
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  align-items: center;
+}
+
+.elsewhereLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-4);
+}
+
+.elsewhereLink {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.elsewhereLink:hover {
+  color: var(--blue);
+  text-decoration: none;
+}

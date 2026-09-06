@@ -1,0 +1,71 @@
+.card {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  background: var(--surface);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.35s var(--ease),
+    background 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: var(--surface-hover);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.shotHome {
+  height: 168px;
+}
+
+.shotFull {
+  height: 186px;
+}
+
+.bodyHome {
+  padding: 20px 22px 24px;
+}
+
+.bodyFull {
+  padding: 22px 24px 26px;
+}
+
+.titleHome {
+  margin: 0 0 8px;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+}
+
+.titleFull {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+}
+
+.role {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--blue);
+}
+
+.summary {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-3);
+}

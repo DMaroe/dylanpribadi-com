@@ -1,0 +1,135 @@
+.main {
+  padding-top: clamp(48px, 8vh, 80px);
+  padding-bottom: clamp(64px, 10vh, 110px);
+}
+
+.intro {
+  margin: 16px 0 44px;
+  max-width: 54ch;
+}
+
+.heading {
+  margin: 0 0 20px;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.headingTight {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.headingExperience {
+  margin: 0 0 26px;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.toolsSection {
+  margin-bottom: 44px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: var(--pill);
+  background: var(--surface);
+}
+
+.receiptsSection {
+  margin-bottom: 52px;
+}
+
+.receiptsNote {
+  margin: 0 0 22px;
+  font-size: 15px;
+  color: var(--text-4);
+}
+
+/* The 2px gap plus a bordered container is what draws the hairline grid. */
+.receiptGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.receipt {
+  background: var(--surface);
+  padding: 26px 26px 28px;
+}
+
+.receiptTitle {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.receiptBody {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-3);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.entryLast {
+  border-bottom: 1px solid var(--border);
+}
+
+.entryHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: baseline;
+}
+
+.entryTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+}
+
+.entryPeriod {
+  font-size: 14px;
+  color: var(--text-4);
+}
+
+.entryBody {
+  margin: 0;
+  max-width: 74ch;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-3);
+}

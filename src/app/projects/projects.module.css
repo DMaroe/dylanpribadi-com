@@ -1,0 +1,9 @@
+.main {
+  padding-top: clamp(48px, 8vh, 80px);
+  padding-bottom: clamp(64px, 10vh, 110px);
+}
+
+.intro {
+  margin: 16px 0 40px;
+  max-width: 52ch;
+}

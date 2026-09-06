@@ -1,0 +1,144 @@
+.hero {
+  padding-top: clamp(64px, 13vh, 132px);
+  padding-bottom: clamp(40px, 7vh, 72px);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--blue);
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(40px, 7.2vw, 88px);
+  line-height: 1.04;
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.subhead {
+  max-width: 30ch;
+  margin: 22px auto 0;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--text-3);
+  text-wrap: pretty;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+.facts {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 26px;
+}
+
+.factLabel {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.factValue {
+  margin: 8px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.block {
+  padding-top: clamp(52px, 8vh, 84px);
+}
+
+.blockHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.allLink {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--blue);
+}
+
+.toolkitHeading {
+  margin-bottom: 20px;
+}
+
+.toolkit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.toolkitChip {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 9px 17px;
+  border-radius: var(--pill);
+  background: var(--surface);
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+
+.toolkitChip:hover {
+  background: var(--btn);
+  color: #fff;
+}
+
+.ctaWrap {
+  margin-top: clamp(56px, 9vh, 96px);
+  padding-bottom: clamp(56px, 9vh, 96px);
+}
+
+.cta {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: clamp(36px, 6vw, 64px) clamp(24px, 5vw, 56px);
+  text-align: center;
+}
+
+.ctaHeading {
+  margin: 0;
+  font-size: clamp(28px, 4.4vw, 46px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.ctaNote {
+  margin: 14px 0 28px;
+  font-size: 17px;
+  color: var(--text-3);
+}
+
+.ctaButton {
+  font-size: 17px;
+  padding: 13px 28px;
+}
