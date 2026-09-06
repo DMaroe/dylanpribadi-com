@@ -81,9 +81,9 @@ A few schema decisions come straight from the design and look arbitrary otherwis
 
 ## Notes
 
-- The seed content is the design's placeholder persona ("Jordan Reyes"), kept
-  verbatim so a fresh database renders the design exactly. Replace it in
-  `migrations/0002_seed.sql`, or with a follow-up migration.
+- The seed content in `migrations/0002_seed.sql` and the design in
+  `design/Portfolio.dc.html` are Dylan's real profile, projects, skills, and
+  experience. Further edits to content go in one of those two places.
 - Project imagery is still the design's placeholder gradient blocks ("Project
   shot", "Screen 1"). There is no image storage yet.
 - OpenNext warns that it is not fully supported on Windows. Build, preview, and
