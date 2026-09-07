@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroStage } from "@/components/HeroStage";
 import { Lines } from "@/components/Lines";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { listFacts, listProjects, listSkills, requireProfile } from "@/lib/db";
@@ -16,21 +17,23 @@ export default async function HomePage() {
 
   return (
     <main className="page">
-      <section className={`container ${styles.hero}`}>
-        <p className={styles.eyebrow}>{profile.hero_eyebrow}</p>
-        <h1 className={styles.headline}>
-          <Lines text={profile.hero_headline} />
-        </h1>
-        <p className={styles.subhead}>{profile.hero_subhead}</p>
-        <div className={styles.heroActions}>
-          <Link href="/contact" className="pill pillPrimary">
-            Contact me
-          </Link>
-          <Link href="/projects" className="pill pillGhost">
-            See projects
-          </Link>
-        </div>
-      </section>
+      <HeroStage photoAlt={`${profile.name} — LinkedIn background`}>
+        <section className={`container ${styles.hero}`}>
+          <p className={styles.eyebrow}>{profile.hero_eyebrow}</p>
+          <h1 className={styles.headline}>
+            <Lines text={profile.hero_headline} />
+          </h1>
+          <p className={styles.subhead}>{profile.hero_subhead}</p>
+          <div className={styles.heroActions}>
+            <Link href="/contact" className="pill pillPrimary">
+              Contact me
+            </Link>
+            <Link href="/projects" className="pill pillGhost">
+              See projects
+            </Link>
+          </div>
+        </section>
+      </HeroStage>
 
       <section className="container">
         <div className={styles.facts}>

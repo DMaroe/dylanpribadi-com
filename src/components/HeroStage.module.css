@@ -1,0 +1,47 @@
+.stage {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  --progress: 0;
+}
+
+.photoLayer,
+.content {
+  grid-area: 1 / 1;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photoLayer {
+  position: relative;
+  overflow: hidden;
+  opacity: calc(1 - var(--progress));
+  filter: blur(calc(var(--progress) * 36px));
+}
+
+.image {
+  transform: scale(1.08);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.58));
+}
+
+.typingWrap {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  text-align: center;
+}
+
+.content {
+  padding-block: 48px;
+  opacity: var(--progress);
+  transform: translateY(calc((1 - var(--progress)) * 16px));
+}
