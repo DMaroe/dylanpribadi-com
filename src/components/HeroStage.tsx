@@ -30,6 +30,22 @@ export function HeroStage({
       return;
     }
 
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
+      const rect = section.getBoundingClientRect();
+      section.style.setProperty("--spot-x", `${((e.clientX - rect.left) / rect.width) * 100}%`);
+      section.style.setProperty("--spot-y", `${((e.clientY - rect.top) / rect.height) * 100}%`);
+    };
+    const onPointerEnter = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
+      section.style.setProperty("--spot-opacity", "1");
+    };
+    const onPointerLeave = () => section.style.setProperty("--spot-opacity", "0");
+
+    section.addEventListener("pointermove", onPointerMove);
+    section.addEventListener("pointerenter", onPointerEnter);
+    section.addEventListener("pointerleave", onPointerLeave);
+
     let ticking = false;
 
     const update = () => {
@@ -55,6 +71,9 @@ export function HeroStage({
     return () => {
       window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
+      section.removeEventListener("pointermove", onPointerMove);
+      section.removeEventListener("pointerenter", onPointerEnter);
+      section.removeEventListener("pointerleave", onPointerLeave);
     };
   }, []);
 
@@ -70,6 +89,7 @@ export function HeroStage({
           preload
         />
         <div className={styles.scrim} />
+        <div className={styles.spotlight} aria-hidden="true" />
         <div className={styles.typingWrap}>
           <TypingHeadline />
         </div>

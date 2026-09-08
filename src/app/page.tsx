@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { FactsStrip } from "@/components/FactsStrip";
 import { HeroStage } from "@/components/HeroStage";
 import { Lines } from "@/components/Lines";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { Reveal } from "@/components/Reveal";
 import { listFacts, listProjects, listSkills, requireProfile } from "@/lib/db";
 import styles from "./home.module.css";
 
@@ -35,42 +37,39 @@ export default async function HomePage() {
         </section>
       </HeroStage>
 
-      <section className="container">
-        <div className={styles.facts}>
-          {facts.map((fact) => (
-            <div key={fact.id}>
-              <p className={styles.factLabel}>{fact.label}</p>
-              <p className={styles.factValue}>
-                <Lines text={fact.value} />
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FactsStrip facts={facts} />
 
       <section className={`container ${styles.block}`}>
-        <div className={styles.blockHead}>
-          <h2 className="sectionHeading">Selected work.</h2>
-          <Link href="/projects" className={styles.allLink}>
-            All projects ›
-          </Link>
-        </div>
+        <Reveal>
+          <div className={styles.blockHead}>
+            <h2 className="sectionHeading">Selected work.</h2>
+            <Link href="/projects" className={styles.allLink}>
+              All projects ›
+            </Link>
+          </div>
+        </Reveal>
         <ProjectGrid projects={featured} variant="home" />
       </section>
 
       <section className={`container ${styles.block}`}>
-        <h2 className={`sectionHeading ${styles.toolkitHeading}`}>Toolkit.</h2>
+        <Reveal>
+          <h2 className={`sectionHeading ${styles.toolkitHeading}`}>Toolkit.</h2>
+        </Reveal>
         <div className={styles.toolkit}>
-          {toolkit.map((skill) => (
-            <span key={skill.id} className={styles.toolkitChip}>
+          {toolkit.map((skill, i) => (
+            <Reveal key={skill.id} delay={i * 40} className={styles.toolkitChip}>
               {skill.name}
-            </span>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className={`container ${styles.ctaWrap}`}>
-        <div className={styles.cta}>
+        <Reveal className={styles.cta}>
+          <div className={styles.availabilityBadge}>
+            <span className={styles.pulseDot} aria-hidden="true" />
+            {profile.availability}
+          </div>
           <h2 className={styles.ctaHeading}>
             <Lines text={profile.cta_heading} />
           </h2>
@@ -78,7 +77,7 @@ export default async function HomePage() {
           <Link href="/contact" className={`pill pillPrimary ${styles.ctaButton}`}>
             Contact me
           </Link>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

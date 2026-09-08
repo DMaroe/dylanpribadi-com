@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Project } from "@/lib/types";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
+import { Reveal } from "./Reveal";
 import styles from "./ProjectGrid.module.css";
 
 /**
@@ -24,13 +25,14 @@ export function ProjectGrid({
   return (
     <>
       <div className={variant === "home" ? styles.gridHome : styles.gridFull}>
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.slug}
-            project={project}
-            variant={variant}
-            onOpen={() => setOpenSlug(project.slug)}
-          />
+        {projects.map((project, i) => (
+          <Reveal key={project.slug} delay={i * 90}>
+            <ProjectCard
+              project={project}
+              variant={variant}
+              onOpen={() => setOpenSlug(project.slug)}
+            />
+          </Reveal>
         ))}
       </div>
       {open && <ProjectModal project={open} onClose={() => setOpenSlug(null)} />}

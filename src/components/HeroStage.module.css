@@ -19,18 +19,33 @@
 .photoLayer {
   position: relative;
   overflow: hidden;
-  opacity: calc(1 - var(--progress));
   filter: blur(calc(var(--progress) * 36px));
 }
 
 .image {
   transform: scale(1.08);
+  /* Never fully fades away — settles at ~15% opacity once scrolled past. */
+  opacity: calc(0.15 + 0.85 * (1 - var(--progress)));
 }
 
 .scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.58));
+  opacity: calc(1 - var(--progress));
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    380px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(255, 255, 255, 0.18),
+    transparent 62%
+  );
+  mix-blend-mode: overlay;
+  opacity: calc((1 - var(--progress)) * var(--spot-opacity, 0));
+  transition: opacity 0.3s var(--ease);
 }
 
 .typingWrap {
@@ -38,6 +53,7 @@
   z-index: 1;
   padding: 24px;
   text-align: center;
+  opacity: calc(1 - var(--progress));
 }
 
 .content {

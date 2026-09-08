@@ -6,9 +6,9 @@
 :root {
   color-scheme: dark;
 
-  --bg: #000;
-  --surface: #1d1d1f;
-  --surface-hover: #232325;
+  --bg: #0c0c0e;
+  --surface: #202024;
+  --surface-hover: #28282c;
 
   --text: #f5f5f7;
   --text-2: #d2d2d7;
@@ -20,6 +20,7 @@
   --blue-hover: #6fbaff;
   --btn: #0071e3;
   --btn-hover: #0077ed;
+  --green: #34c759;
 
   --border: rgba(255, 255, 255, 0.11);
   --chip: rgba(255, 255, 255, 0.09);
@@ -105,6 +106,22 @@ a:hover {
 
 .page {
   animation: fadeUp 0.5s var(--ease);
+}
+
+/* Scroll-triggered reveal — toggled to .visible by IntersectionObserver in
+   src/lib/useReveal.ts. --reveal-delay staggers items within one group. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
 }
 
 /* Pill buttons — the design uses these as both <button> and <a>. */
