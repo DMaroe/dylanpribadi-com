@@ -1,0 +1,47 @@
+.toggle {
+  flex: none;
+  appearance: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 46px;
+  height: 26px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--pill);
+  background: var(--chip);
+  transition:
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+.knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-3);
+  transform: translateX(0);
+  transition:
+    transform 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+
+/* Light mode reads as the switch's "on" state, iOS-style. */
+:global(:root[data-theme="light"]) .toggle {
+  background: var(--btn);
+  border-color: transparent;
+}
+
+:global(:root[data-theme="light"]) .toggle:hover {
+  background: var(--btn-hover);
+}
+
+:global(:root[data-theme="light"]) .knob {
+  background: #fff;
+  transform: translateX(20px);
+}

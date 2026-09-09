@@ -2,10 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(0, 0, 0, 0.72);
+  background: var(--header-bg);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s var(--ease);
 }
 
 .inner {
@@ -30,6 +31,13 @@
 .name:hover {
   color: var(--text);
   text-decoration: none;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .nav {

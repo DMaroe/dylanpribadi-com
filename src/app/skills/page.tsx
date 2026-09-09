@@ -27,9 +27,9 @@ export default async function SkillsPage() {
 
       <section className={styles.toolsSection}>
         <h2 className={styles.heading}>Tools</h2>
-        <div className={styles.chips}>
+        <div className="toolChipRow">
           {tools.map((tool) => (
-            <span key={tool.id} className={styles.chip}>
+            <span key={tool.id} className="toolChip">
               {tool.name}
             </span>
           ))}

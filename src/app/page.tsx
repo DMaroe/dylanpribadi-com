@@ -55,9 +55,9 @@ export default async function HomePage() {
         <Reveal>
           <h2 className={`sectionHeading ${styles.toolkitHeading}`}>Toolkit.</h2>
         </Reveal>
-        <div className={styles.toolkit}>
+        <div className="toolChipRow">
           {toolkit.map((skill, i) => (
-            <Reveal key={skill.id} delay={i * 40} className={styles.toolkitChip}>
+            <Reveal key={skill.id} delay={i * 40} className="toolChip">
               {skill.name}
             </Reveal>
           ))}

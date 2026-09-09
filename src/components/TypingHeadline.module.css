@@ -1,14 +1,14 @@
 .typing {
   margin: 0;
   max-width: 26ch;
-  color: #fff;
+  color: var(--text-on-photo);
   font-family: var(--font);
   font-weight: 400;
   font-size: clamp(20px, 3.6vw, 34px);
   line-height: 1.35;
   letter-spacing: -0.01em;
   text-wrap: balance;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 24px var(--text-on-photo-shadow);
 }
 
 .typing strong {
@@ -21,7 +21,7 @@
   height: 1em;
   margin-left: 2px;
   vertical-align: -0.15em;
-  background: #fff;
+  background: var(--text-on-photo);
   animation: blink 1s steps(1) infinite;
 }
 

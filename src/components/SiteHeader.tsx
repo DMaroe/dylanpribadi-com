@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./SiteHeader.module.css";
 
 const NAV = [
@@ -20,23 +21,26 @@ export function SiteHeader({ name }: { name: string }) {
         <Link href="/" className={styles.name}>
           {name}
         </Link>
-        <nav className={styles.nav}>
-          {NAV.map((item) => {
-            const active =
-              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={active ? `${styles.link} ${styles.active}` : styles.link}
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-                {active && <span className={styles.underline} />}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className={styles.right}>
+          <nav className={styles.nav}>
+            {NAV.map((item) => {
+              const active =
+                item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={active ? `${styles.link} ${styles.active}` : styles.link}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                  {active && <span className={styles.underline} />}
+                </Link>
+              );
+            })}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

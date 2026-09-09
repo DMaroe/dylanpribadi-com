@@ -74,7 +74,7 @@
   position: absolute;
   inset: -20px -20px auto -20px;
   height: 240px;
-  background: radial-gradient(50% 70% at 20% 0%, rgba(41, 151, 255, 0.16), transparent 70%);
+  background: radial-gradient(50% 70% at 20% 0%, var(--glow-soft), transparent 70%);
   filter: blur(60px);
   pointer-events: none;
 }
@@ -99,33 +99,6 @@
   margin-bottom: 20px;
 }
 
-.toolkit {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.toolkitChip {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-  padding: 9px 17px;
-  border-radius: var(--pill);
-  background: var(--surface);
-  transition:
-    background 0.25s,
-    color 0.25s,
-    transform 0.25s var(--ease),
-    box-shadow 0.25s var(--ease);
-}
-
-.toolkitChip:hover {
-  background: var(--btn);
-  color: #fff;
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 8px 20px rgba(41, 151, 255, 0.35);
-}
-
 .ctaWrap {
   position: relative;
   margin-top: clamp(56px, 9vh, 96px);
@@ -137,7 +110,7 @@
   position: absolute;
   inset: -60px -20px auto -20px;
   height: 420px;
-  background: radial-gradient(65% 65% at 50% 30%, rgba(41, 151, 255, 0.55), transparent 72%);
+  background: radial-gradient(65% 65% at 50% 30%, var(--glow-strong), transparent 72%);
   filter: blur(44px);
   pointer-events: none;
 }
@@ -150,10 +123,22 @@
   pointer-events: none;
 }
 
+/*
+ * This panel is a blurred photograph, not a surface, so it stays dark in both
+ * themes — light text on the image is the only readable option. Redefining the
+ * tokens here rather than restyling each child keeps every descendant
+ * (heading, note, availability badge) on the dark values automatically.
+ */
 .cta {
+  --text: #f5f5f7;
+  --text-3: #a1a1a6;
+  --green: #34c759;
+  --green-tint: rgba(52, 199, 89, 0.12);
+
   position: relative;
   overflow: hidden;
-  background: var(--surface);
+  background: #202024;
+  color: var(--text);
   border-radius: 24px;
   padding: clamp(36px, 6vw, 64px) clamp(24px, 5vw, 56px);
   text-align: center;
@@ -182,7 +167,7 @@
   margin-bottom: 18px;
   padding: 7px 14px 7px 10px;
   border-radius: var(--pill);
-  background: rgba(52, 199, 89, 0.12);
+  background: var(--green-tint);
   color: var(--green);
   font-size: 13px;
   font-weight: 600;

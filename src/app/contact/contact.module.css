@@ -37,14 +37,17 @@
   display: block;
   border-radius: 22px;
   padding: 28px 26px 26px;
+  box-shadow: var(--surface-elevation);
   transition:
     transform 0.35s var(--ease),
-    background 0.3s;
+    background 0.3s,
+    box-shadow 0.35s var(--ease);
 }
 
 .card:hover {
   transform: translateY(-5px);
   text-decoration: none;
+  box-shadow: var(--surface-elevation-hover);
 }
 
 .cardEmail {

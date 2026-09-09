@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: rgba(0, 0, 0, 0.72);
+  background: var(--overlay-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   display: flex;
@@ -61,7 +61,7 @@
   width: 34px;
   height: 34px;
   border-radius: var(--pill);
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--modal-close-bg);
   color: var(--text);
   font-family: inherit;
   font-size: 17px;
@@ -72,12 +72,12 @@
 }
 
 .close:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--modal-close-hover-bg);
 }
 
 .hero {
   height: clamp(180px, 30vh, 280px);
-  background: linear-gradient(150deg, #2f2f33, #171719);
+  background: var(--modal-hero-gradient);
 }
 
 .body {
@@ -147,7 +147,7 @@
   width: 30px;
   height: 30px;
   border-radius: var(--pill);
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--play-bg);
   display: grid;
   place-items: center;
   font-size: 11px;

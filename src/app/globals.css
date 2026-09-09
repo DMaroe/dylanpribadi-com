@@ -1,6 +1,9 @@
 /*
- * Tokens and base styles lifted from design/Portfolio.dc.html. The design is
- * dark-only and commits to a single look, so there is no light palette here.
+ * Tokens and base styles lifted from design/Portfolio.dc.html. Dark is the
+ * design's native look and stays the default here; light is an inversion of
+ * the same grey ladder, applied via [data-theme="light"] on <html>. The
+ * attribute is set by an inline script in the root layout before first paint,
+ * so a page never flashes the wrong theme.
  */
 
 :root {
@@ -21,10 +24,40 @@
   --btn: #0071e3;
   --btn-hover: #0077ed;
   --green: #34c759;
+  --green-tint: rgba(52, 199, 89, 0.12);
 
   --border: rgba(255, 255, 255, 0.11);
   --chip: rgba(255, 255, 255, 0.09);
   --hairline-strong: rgba(255, 255, 255, 0.28);
+
+  --ghost-hover-bg: rgba(255, 255, 255, 0.1);
+  --ghost-hover-border: rgba(255, 255, 255, 0.5);
+
+  /* Dark mode separates a surface from the page by brightness alone, so it
+     needs no edge. Light mode can't: white on near-white is invisible without
+     a hairline and a shadow. Applied as box-shadow (not border) so neither
+     theme's layout shifts by a pixel. */
+  --surface-elevation: none;
+  --surface-elevation-hover: none;
+
+  --header-bg: rgba(0, 0, 0, 0.72);
+  --overlay-bg: rgba(0, 0, 0, 0.72);
+  --modal-close-bg: rgba(0, 0, 0, 0.55);
+  --modal-close-hover-bg: rgba(0, 0, 0, 0.8);
+  --modal-hero-gradient: linear-gradient(150deg, #2f2f33, #171719);
+  --play-bg: rgba(255, 255, 255, 0.14);
+  --shot-gradient: linear-gradient(150deg, #2b2b2e, #191919);
+
+  --glow-soft: rgba(41, 151, 255, 0.16);
+  --glow-strong: rgba(41, 151, 255, 0.55);
+
+  /* The hero photograph can't invert, so the scrim over it does: it darkens
+     the photo in dark mode and washes it toward white in light mode, keeping
+     the headline readable through the whole scroll transition. */
+  --hero-scrim: linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.58));
+  --hero-spotlight: rgba(255, 255, 255, 0.18);
+  --text-on-photo: #fff;
+  --text-on-photo-shadow: rgba(0, 0, 0, 0.4);
 
   --pill: 980px;
   --container: 1020px;
@@ -34,6 +67,61 @@
     "Helvetica Neue", Helvetica, sans-serif;
 
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* Dark mode lifts cards above the page; light mode keeps that relationship
+     by putting white surfaces on a grey page rather than white on white. */
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-hover: #f0f0f3;
+
+  --text: #1d1d1f;
+  --text-2: #424245;
+  --text-3: #6e6e73;
+  --text-4: #86868b;
+  --text-5: #a1a1a6;
+
+  /* #2997ff only reaches 3:1 on white, which fails AA for body text, so light
+     mode uses the darker blue already in the palette (--btn) at 4.7:1. */
+  --blue: #0071e3;
+  --blue-hover: #0058b4;
+  --green: #1d8a3a;
+  --green-tint: rgba(29, 138, 58, 0.12);
+
+  --border: rgba(0, 0, 0, 0.12);
+  --chip: rgba(0, 0, 0, 0.06);
+  --hairline-strong: rgba(0, 0, 0, 0.28);
+
+  --ghost-hover-bg: rgba(0, 0, 0, 0.06);
+  --ghost-hover-border: rgba(0, 0, 0, 0.45);
+
+  --surface-elevation:
+    0 0 0 1px rgba(0, 0, 0, 0.07),
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  --surface-elevation-hover:
+    0 0 0 1px rgba(0, 0, 0, 0.09),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    0 14px 30px rgba(0, 0, 0, 0.1);
+
+  --header-bg: rgba(255, 255, 255, 0.72);
+  --overlay-bg: rgba(0, 0, 0, 0.45);
+  --modal-close-bg: rgba(255, 255, 255, 0.72);
+  --modal-close-hover-bg: rgba(255, 255, 255, 0.95);
+  --modal-hero-gradient: linear-gradient(150deg, #eaeaef, #dadae1);
+  --play-bg: rgba(0, 0, 0, 0.1);
+  --shot-gradient: linear-gradient(150deg, #e8e8ec, #dcdce2);
+
+  --glow-soft: rgba(41, 151, 255, 0.1);
+  --glow-strong: rgba(41, 151, 255, 0.28);
+
+  --hero-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.72));
+  --hero-spotlight: rgba(0, 0, 0, 0.12);
+  --text-on-photo: #1d1d1f;
+  --text-on-photo-shadow: rgba(255, 255, 255, 0.65);
 }
 
 * {
@@ -49,6 +137,12 @@ body {
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
+}
+
+body {
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
 }
 
 a {
@@ -159,8 +253,8 @@ a:hover {
 }
 
 .pillGhost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: var(--ghost-hover-bg);
+  border-color: var(--ghost-hover-border);
   color: var(--text);
   text-decoration: none;
 }
@@ -181,9 +275,41 @@ a:hover {
   gap: 7px;
 }
 
+/* The larger chips listing tooling — shared by the home page toolkit and the
+   Tools section on the skills page so the two can't drift apart. */
+.toolChip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 9px 17px;
+  border-radius: var(--pill);
+  background: var(--surface);
+  box-shadow: var(--surface-elevation);
+  transition:
+    background 0.25s,
+    color 0.25s,
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.toolChip:hover {
+  background: var(--btn);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 20px rgba(41, 151, 255, 0.35);
+}
+
+.toolChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 /* Placeholder art blocks standing in for project imagery. */
 .shot {
-  background: linear-gradient(150deg, #2b2b2e, #191919);
+  background: var(--shot-gradient);
   display: grid;
   place-items: center;
 }
