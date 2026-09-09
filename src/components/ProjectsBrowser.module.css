@@ -1,0 +1,38 @@
+.sortRow {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 28px;
+}
+
+.sortButton {
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-3);
+  background: var(--chip);
+  border: 1px solid transparent;
+  border-radius: var(--pill);
+  padding: 7px 16px;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.sortButton:hover {
+  color: var(--text);
+}
+
+.sortButton:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.sortButton.active {
+  color: var(--text);
+  background: transparent;
+  border-color: var(--hairline-strong);
+}

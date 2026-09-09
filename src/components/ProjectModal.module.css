@@ -13,6 +13,10 @@
   animation: fadeUp 0.28s var(--ease);
 }
 
+.overlay.closing {
+  animation: overlayOut 0.22s var(--ease) forwards;
+}
+
 .dialog {
   position: relative;
   width: 100%;
@@ -20,6 +24,30 @@
   background: var(--surface);
   border-radius: 26px;
   overflow: hidden;
+}
+
+.dialog.closing {
+  animation: dialogOut 0.22s var(--ease) forwards;
+}
+
+@keyframes overlayOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes dialogOut {
+  0% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
 }
 
 .close {

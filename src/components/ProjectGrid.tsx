@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Project } from "@/lib/types";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
@@ -10,7 +10,10 @@ import styles from "./ProjectGrid.module.css";
 /**
  * The design opens project detail in a modal rather than on its own route, and
  * uses the same grid on the home page (three featured, compact cards) and the
- * projects page (all six, taller cards with a role line).
+ * projects page (all six, taller cards with a role line). Which project is open
+ * lives in the `project` query param (shallow — no server round-trip) rather
+ * than component state, so the modal is linkable, survives a refresh, and
+ * closes on browser back.
  */
 export function ProjectGrid({
   projects,
@@ -19,8 +22,24 @@ export function ProjectGrid({
   projects: Project[];
   variant: "home" | "full";
 }) {
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const openSlug = searchParams.get("project");
   const open = projects.find((p) => p.slug === openSlug) ?? null;
+
+  const openProject = (slug: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("project", slug);
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
+  const closeProject = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("project");
+    const query = params.toString();
+    router.push(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  };
 
   return (
     <>
@@ -30,12 +49,12 @@ export function ProjectGrid({
             <ProjectCard
               project={project}
               variant={variant}
-              onOpen={() => setOpenSlug(project.slug)}
+              onOpen={() => openProject(project.slug)}
             />
           </Reveal>
         ))}
       </div>
-      {open && <ProjectModal project={open} onClose={() => setOpenSlug(null)} />}
+      {open && <ProjectModal project={open} onClose={closeProject} />}
     </>
   );
 }

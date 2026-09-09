@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/lib/types";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import styles from "./ProjectModal.module.css";
+
+// Keep in sync with the .closing exit transition durations below.
+const CLOSE_ANIMATION_MS = 220;
 
 export function ProjectModal({
   project,
@@ -12,6 +16,19 @@ export function ProjectModal({
   onClose: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const [closing, setClosing] = useState(false);
+  const reducedMotion = useReducedMotion();
+
+  // Plays the exit transition before actually closing (which unmounts this
+  // component), instead of cutting the modal out instantly.
+  const requestClose = () => {
+    if (reducedMotion) {
+      onClose();
+      return;
+    }
+    setClosing(true);
+    window.setTimeout(onClose, CLOSE_ANIMATION_MS);
+  };
 
   // The design closes on Escape; focus handling and the scroll lock are added
   // here because a dialog that traps neither is only half-built.
@@ -20,7 +37,7 @@ export function ProjectModal({
     closeRef.current?.focus();
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") requestClose();
     };
     window.addEventListener("keydown", onKeyDown);
 
@@ -32,14 +49,18 @@ export function ProjectModal({
       document.body.style.overflow = previousOverflow;
       previouslyFocused?.focus();
     };
-  }, [onClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const lede = project.modal_summary ?? project.summary;
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
+    <div
+      className={`${styles.overlay} ${closing ? styles.closing : ""}`}
+      onClick={requestClose}
+    >
       <article
-        className={styles.dialog}
+        className={`${styles.dialog} ${closing ? styles.closing : ""}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
@@ -48,7 +69,7 @@ export function ProjectModal({
         <button
           ref={closeRef}
           type="button"
-          onClick={onClose}
+          onClick={requestClose}
           aria-label="Close"
           className={styles.close}
         >

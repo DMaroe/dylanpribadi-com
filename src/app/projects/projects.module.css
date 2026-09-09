@@ -3,7 +3,34 @@
   padding-bottom: clamp(64px, 10vh, 110px);
 }
 
+.kicker {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.ruleWrap {
+  margin: 18px 0 0;
+}
+
+.rule {
+  display: block;
+  width: 64px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--blue);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.ruleWrap:global(.visible) .rule {
+  animation: growX 0.5s var(--ease) forwards;
+}
+
 .intro {
-  margin: 16px 0 40px;
+  margin: 18px 0 40px;
   max-width: 52ch;
 }
