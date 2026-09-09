@@ -78,3 +78,172 @@
   transform-origin: left;
   animation: growX 0.28s var(--ease);
 }
+
+/* ---- mobile hamburger + drawer ---- */
+
+.menuButton {
+  display: none;
+  flex: none;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: transparent;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background 0.2s;
+}
+
+.menuButton:hover {
+  background: var(--chip);
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.burgerLine {
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--text);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: fadeIn 0.28s var(--ease);
+}
+
+.overlay.closing {
+  animation: fadeOut 0.22s var(--ease) forwards;
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(78vw, 320px);
+  background: var(--surface);
+  box-shadow: var(--surface-elevation);
+  display: flex;
+  flex-direction: column;
+  animation: slideInFromRight 0.28s var(--ease);
+}
+
+.drawer.closing {
+  animation: slideOutToRight 0.22s var(--ease) forwards;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  min-height: 48px;
+}
+
+.closeButton {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--pill);
+  background: var(--modal-close-bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+
+.closeButton:hover {
+  background: var(--modal-close-hover-bg);
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.drawerLink {
+  padding: 14px 12px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-2);
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.drawerLink:hover {
+  color: var(--text);
+  background: var(--chip);
+  text-decoration: none;
+}
+
+.drawerLinkActive {
+  color: var(--text);
+  background: var(--chip);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 700px) {
+  .nav,
+  .desktopToggle {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+}
